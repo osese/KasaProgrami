@@ -36,10 +36,10 @@ public class DBManager {
     private String password;
     private String dbName;
     public DBManager(){
-        dbName = "Kasadb";
-        userName = "admin";
+        dbName = "kasaprogrami";
+        userName = "kp_admin";
         password = "1234";
-        String driver = "org.h2.Driver";
+        String driver = "org.postgresql.Driver";
         try{
             Class.forName(driver);
             //System.out.println("class for name ok!");
@@ -48,11 +48,10 @@ public class DBManager {
         }
     }
     public void connect(){
-        try{
-            conn = DriverManager.getConnection("jdbc:h2:~/name/" + this.dbName , this.userName, this.password);
+        try{ 
+            conn = DriverManager.getConnection("jdbc:postgresql:" + this.dbName , this.userName, this.password);
             //System.out.println("connection ok!");
             // set default schema 
-            conn.createStatement().execute("set schema main;"); 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
